@@ -46,6 +46,13 @@ else:
 
 print(f'Ожидаемая средняя инфляция {i}%')
 
+while True:
+    savings = input('Введите сумму, которую Вы готовы откладывать ежегодно (необходимо ввести число): ')
+    if savings.isdigit():
+        savings = int(savings)
+        break
+
+print(f'Вы ежегодно готовы откладывать {savings} рублей')
 
 
 
