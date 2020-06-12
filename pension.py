@@ -1,10 +1,11 @@
 while True:
     age = input('Введите возраст (полных лет цифрой): ')
-    if age.isdigit() == True:
+    if age.isdigit():
         age = int(age)
         break
     else:
         print('Надо ввести число!')
+
 while True:
     gender = input('Введите пол (М/Ж): ')
     gender = gender.upper()
@@ -12,9 +13,10 @@ while True:
         break
     else:
         print('Введите информацию в корректном формате.')
+
 while True:
     age_expected = input('Введите ожидаемую продолжительность жизни (полных лет цифрой): ')
-    if age_expected.isdigit() == True:
+    if age_expected.isdigit():
         age_expected = int(age_expected)
         break
     else:
@@ -32,8 +34,9 @@ else:
     years_live = age_expected - 60
 print(f'Ожидаемый период дожития: {years_live}')
 
-inflation = [160.4, 2508.85, 839.87, 215.02, 131.33, 21.81, 11.03, 84.44, 36.56, 20.2, 18.58, 15.06, 11.99, 11.74, 10.91, 9,
-11.87, 13.28, 8.8, 8.78, 6.1, 6.58, 6.45, 11.36, 12.91, 5.38, 2.52, 4.27, 3.05]
+inflation = [160.4, 2508.85, 839.87, 215.02, 131.33, 21.81, 11.03, 84.44, 36.56, 20.2, 18.58, 15.06, 11.99, 11.74,
+             10.91, 9,
+             11.87, 13.28, 8.8, 8.78, 6.1, 6.58, 6.45, 11.36, 12.91, 5.38, 2.52, 4.27, 3.05]
 
 inflation = list(reversed(inflation))
 
@@ -51,15 +54,29 @@ while True:
     if savings.isdigit():
         savings = int(savings)
         break
+    else:
+        print('Надо ввести число!')
 
 while True:
-    rate = input('Введите ожидаемую норму доходности в процентах от инфляции (необходимо ввести число: ')
+    rate = input('Введите ожидаемую норму доходности в процентах от инфляции (необходимо ввести число): ')
     if rate.isdigit():
-        rate = round((i / 100) * (int(rate) / 100), 2)
+        rate = float((i / 100) * (int(rate) / 100))
+        print(f'Ожидаемая средняя норма годовой доходности {round((rate * 100), 2)} %')
         break
+    else:
+        print('Надо ввести число!')
 
-print(f'Ожидаемая средняя норма годовой доходности {rate * 100} %')
+while True:
+    total_savings = input('Введите сумму текущих сбережений (в тыс. рублей, необходимо ввести число): ')
+    if total_savings.isdigit():
+        current_savings = int(total_savings)
+        break
+    else:
+        print('Надо ввести число!')
 
+year = 0
+while year < years_left:
+    total_savings = float(total_savings) * (1 + rate) + savings
+    year += 1
 
-
-
+print(f'Итоговая сумма пенсионных сбережений: {int(total_savings)} тыс. рублей.')
