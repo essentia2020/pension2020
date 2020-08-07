@@ -64,11 +64,11 @@ while True:
         rate = float(rate) / 100
         break
     if not rate:
-            rate = input('Введите ожидаемую норму доходности в процентах от инфляции (необходимо ввести число): ')
-            if rate.isdigit():
-                rate = i * float(rate) / 100
-                print(f'Ожидаемая средняя норма годовой доходности {round((rate * 100), 2)} %')
-                break
+        rate = input('Введите ожидаемую норму доходности в процентах от инфляции (необходимо ввести число): ')
+        if rate.isdigit():
+            rate = i * float(rate) / 100
+            print(f'Ожидаемая средняя норма годовой доходности {round((rate * 100), 2)} %')
+            break
     print('Надо ввести число!')
 
 while True:
@@ -90,3 +90,13 @@ for year in range(years_left + 1):
     real_savings = real_savings * (1 + (rate - i)) + savings
 
 print(f'Сумма реальных сбережений {int(real_savings)} тыс. руб.')
+
+rate = rate / 2  # Предполагается снижение нормы доходности вдвое в пенсионный период
+
+monthly = (total_savings * (rate / 12)) / (1 - 1 / (1 + (rate / 12)) ** (years_live * 12))
+
+print(f'Размер Вашей пенсии составит {round(monthly, 2)} тыс. рублей.')
+
+monthly_real = (real_savings * (rate / 12 - i / 12)) / (1 - 1 / (1 + (rate / 12 - i / 12)) ** (years_live * 12))
+
+print(f'Реальный размер Вашей пенсии составит {round(monthly_real, 2)} тыс. рублей.')
